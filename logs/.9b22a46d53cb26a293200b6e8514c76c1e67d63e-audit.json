@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/hwangjaehyeon/UniAsset_FE/logs/.9b22a46d53cb26a293200b6e8514c76c1e67d63e-audit.json",
+    "files": [
+        {
+            "date": 1773626142556,
+            "name": "/Users/hwangjaehyeon/UniAsset_FE/logs/application-2026-03-16.log",
+            "hash": "3255b9b0240ca976d9f315570a6c018dad4493467cc8503935f2cdf1519ac0e6"
+        }
+    ],
+    "hashType": "sha256"
+}
