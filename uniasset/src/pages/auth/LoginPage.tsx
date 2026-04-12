@@ -1,14 +1,22 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/useAuthStore';
 import './LoginPage.css';
+
+interface LoginPageLocationState {
+  signupSuccessMessage?: string;
+}
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, isLoading, error, clearError } = useAuthStore();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const signupSuccessMessage =
+    (location.state as LoginPageLocationState | null)?.signupSuccessMessage ?? '';
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -25,6 +33,7 @@ export default function LoginPage() {
         <p className="subtitle">대학생 자산관리 플랫폼</p>
 
         <form className="auth-form" onSubmit={handleSubmit}>
+          {signupSuccessMessage && <div className="auth-success">{signupSuccessMessage}</div>}
           {error && <div className="auth-error">{error}</div>}
 
           <div className="form-group">

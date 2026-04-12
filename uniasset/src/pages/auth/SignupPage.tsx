@@ -28,9 +28,15 @@ export default function SignupPage() {
       return;
     }
 
-    await signup(name, email, password);
-    if (useAuthStore.getState().token) {
-      navigate('/dashboard');
+    const isSignupSuccess = await signup(name, email, password);
+
+    if (isSignupSuccess) {
+      navigate('/login', {
+        replace: true,
+        state: {
+          signupSuccessMessage: '회원가입이 완료되었습니다. 로그인해주세요.',
+        },
+      });
     }
   };
 

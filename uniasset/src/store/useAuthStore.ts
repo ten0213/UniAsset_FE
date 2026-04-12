@@ -10,7 +10,7 @@ interface AuthState {
   error: string | null;
 
   login: (email: string, password: string) => Promise<void>;
-  signup: (name: string, email: string, password: string) => Promise<void>;
+  signup: (name: string, email: string, password: string) => Promise<boolean>;
   logout: () => void;
   clearError: () => void;
 }
@@ -118,15 +118,20 @@ export const useAuthStore = create<AuthState>((set) => ({
   signup: async (name, email, password) => {
     set({ isLoading: true, error: null });
     try {
-      const { data } = await authApi.signup({ name, email, password });
-      localStorage.setItem('token', data.token);
-      set({ user: data.user, token: data.token, isLoading: false });
+      await authApi.signup({ name, email, password });
+
+      // 회원가입 완료 후에는 자동 로그인하지 않고 로그인 페이지로 이동
+      localStorage.removeItem('token');
+      set({ user: null, token: null, error: null, isLoading: false });
+      return true;
     } catch (err: unknown) {
       const axiosError = err as AxiosError<{ message?: string }>;
       const message = axiosError.response
         ? getSignupErrorMessage(axiosError)
         : '회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.';
-      set({ error: message, isLoading: false });
+
+      set({ user: null, token: null, error: message, isLoading: false });
+      return false;
     }
   },
 
