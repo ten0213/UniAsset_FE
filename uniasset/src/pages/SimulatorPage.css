@@ -1,0 +1,40 @@
+/* 페이지를 분할하여 생성 후 임시로 처리한 파일입니다. */
+
+/* 시뮬레이터 페이지 전체 영역 */
+.simulator-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 30px;
+}
+
+.simulator-page h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+/* 큰 제목 밑에 글씨 */
+.simulator-description {
+  color: #4b5563;
+  margin-bottom: 16px;
+}
+
+.simulator-card {
+  max-width: 560px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+/* 카드 안의 재목 */
+.simulator-card h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.simulator-card ul {
+  margin-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

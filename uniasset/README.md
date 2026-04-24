@@ -34,3 +34,19 @@ App.tsx                           : /dashboard 실제 페이지 라우팅 연결
 ```
 
 ---
+
+## (04/24) 3번째 프로젝트 구현 한눈에 보기(자세한 내용은 README_3 참조)
+
+```
+App.tsx (수정)                             : 사이드바 포함 라우팅 구조로 변경(Outlet 미사용)
+components/auth/ProtectedRoute.tsx (수정)  : children 반환 방식으로 단순화
+pages/Sidebar.tsx                         : 왼쪽 사이드바 컴포넌트
+pages/SidebarLayout.tsx                   : 사이드바 + 콘텐츠 레이아웃
+pages/Sidebar.css                         : 사이드바 스타일
+pages/GoalPage.tsx                        : 투자 목표 최소 페이지
+pages/GoalPage.css                        : 투자 목표 최소 스타일
+pages/SimulatorPage.tsx                   : 시뮬레이터 최소 페이지
+pages/SimulatorPage.css                   : 시뮬레이터 최소 스타일
+```
+
+---
