@@ -4,8 +4,9 @@ import SignupPage from './pages/auth/SignupPage';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import SidebarLayout from './pages/SidebarLayout';
-import GoalPage from './pages/GoalPage';
+import GoalPage from './pages/goal/GoalPage';
 import SimulatorPage from './pages/SimulatorPage';
+
 
 function App() {
   return (
@@ -46,6 +47,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+
 
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
