@@ -50,3 +50,19 @@ pages/SimulatorPage.css                   : 시뮬레이터 최소 스타일
 ```
 
 ---
+
+## (05/09) 4번째 프로젝트 구현 한눈에 보기(자세한 내용은 README_4 참조)
+
+```
+types/auth.ts (수정)          : UserRole 타입 추가, User 인터페이스에 role 필드 추가
+constants/auth.ts (신규)      : isAdminUser() 권한 확인 유틸 함수
+api/client.ts (수정)          : 401 에러 시 인증 엔드포인트 제외 처리
+store/useAuthStore.ts (수정)  : 에러 메시지 매핑 단순화 (서버 메시지 의존도 제거)
+pages/auth/LoginPage.tsx (수정): 이메일→아이디 입력 변경, 역할별 로그인 후 라우팅 분기
+pages/Sidebar.tsx (수정)      : 메뉴 배열화, 섹션 분리(커뮤니티/관리자), 권한 기반 메뉴 노출
+pages/SidebarLayout.tsx (수정): any → SidebarLayoutProps 인터페이스 타입 안전성 개선
+pages/Sidebar.css (수정)      : 너비 확장, 섹션 구분선/라벨, 서브타이틀 스타일
+vite.config.ts (수정)         : 프록시 포트 8080 → 8081 변경
+```
+
+---
