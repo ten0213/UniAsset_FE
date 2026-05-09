@@ -1,25 +1,49 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { isAdminUser } from '../constants/auth';
 import { useAuthStore } from '../store/useAuthStore';
 import './Sidebar.css';
+
+const MAIN_MENUS = [
+  {
+    path: '/dashboard',
+    label: '대시보드',
+  },
+  {
+    path: '/goal',
+    label: '투자 목표',
+  },
+  {
+    path: '/simulator',
+    label: '성장 시뮬레이터',
+  },
+] as const;
+
+const COMMUNITY_MENUS = [
+  {
+    path: '/community',
+    label: '커뮤니티',
+  },
+] as const;
+
+const ADMIN_MENU = {
+  path: '/admin',
+  label: '관리자',
+} as const;
+
+const isActiveMenu = (pathname: string, targetPath: string): boolean =>
+  pathname === targetPath || pathname.startsWith(`${targetPath}/`);
 
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
   const logout = useAuthStore((state) => state.logout);
+  const user = useAuthStore((state) => state.user);
 
-  // 사이드바에 항목을 클릭했을 때 실행될 함수
-  const goDashboard = () => {
-    navigate('/dashboard');
+  const canAccessAdmin = isAdminUser(user);
+
+  const handleMove = (targetPath: string) => () => {
+    navigate(targetPath);
   };
-
-  const goGoal = () => {
-    navigate('/goal');
-  };
-
-  const goSimulator = () => {
-    navigate('/simulator');
-  };
-
 
   const handleLogout = () => {
     logout();
@@ -28,32 +52,51 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar">
-      <h2 className="sidebar-title">UniAsset</h2>
+      <div>
+        <h2 className="sidebar-title">UniAsset</h2>
+        <p className="sidebar-subtitle">학생 자산관리 플랫폼</p>
+      </div>
 
       <div className="sidebar-menu">
-        <button
-          type="button"
-          className={location.pathname === '/dashboard' ? 'sidebar-button active' : 'sidebar-button'}
-          onClick={goDashboard}
-        >
-          대시보드
-        </button>
+        {MAIN_MENUS.map((menu) => (
+          <button
+            key={menu.path}
+            type="button"
+            className={isActiveMenu(location.pathname, menu.path) ? 'sidebar-button active' : 'sidebar-button'}
+            onClick={handleMove(menu.path)}
+          >
+            {menu.label}
+          </button>
+        ))}
+      </div>
 
-        <button
-          type="button"
-          className={location.pathname === '/goal' ? 'sidebar-button active' : 'sidebar-button'}
-          onClick={goGoal}
-        >
-          투자 목표
-        </button>
+      <div className="sidebar-section">
+        <p className="sidebar-section-label">커뮤니티 운영</p>
+        <div className="sidebar-menu">
+          {COMMUNITY_MENUS.map((menu) => (
+            <button
+              key={menu.path}
+              type="button"
+              className={isActiveMenu(location.pathname, menu.path) ? 'sidebar-button active' : 'sidebar-button'}
+              onClick={handleMove(menu.path)}
+            >
+              {menu.label}
+            </button>
+          ))}
 
-        <button
-          type="button"
-          className={location.pathname === '/simulator' ? 'sidebar-button active' : 'sidebar-button'}
-          onClick={goSimulator}
-        >
-          성장 시뮬레이터
-        </button>
+          {canAccessAdmin && (
+            <button
+              key={ADMIN_MENU.path}
+              type="button"
+              className={
+                isActiveMenu(location.pathname, ADMIN_MENU.path) ? 'sidebar-button active' : 'sidebar-button'
+              }
+              onClick={handleMove(ADMIN_MENU.path)}
+            >
+              {ADMIN_MENU.label}
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="sidebar-bottom">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/useAuthStore';
+import { isAdminUser } from '../../constants/auth';
 import './LoginPage.css';
 
 interface LoginPageLocationState {
@@ -21,8 +22,10 @@ export default function LoginPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     await login(email, password);
-    if (useAuthStore.getState().token) {
-      navigate('/dashboard');
+    const { token, user } = useAuthStore.getState();
+
+    if (token) {
+      navigate(isAdminUser(user) ? '/admin' : '/dashboard');
     }
   };
 
@@ -37,11 +40,11 @@ export default function LoginPage() {
           {error && <div className="auth-error">{error}</div>}
 
           <div className="form-group">
-            <label htmlFor="email">이메일</label>
+            <label htmlFor="email">아이디</label>
             <input
               id="email"
-              type="email"
-              placeholder="example@university.ac.kr"
+              type="text"
+              placeholder="아이디를 입력하세요"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);

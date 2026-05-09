@@ -1,10 +1,15 @@
+import type { ReactNode } from 'react';
 import Sidebar from './Sidebar';
 
-export default function SidebarLayout(props: any) {
+interface SidebarLayoutProps {
+  children: ReactNode;
+}
+
+export default function SidebarLayout({ children }: SidebarLayoutProps) {
   return (
     <div className="sidebar-layout">
       <Sidebar />
-      <div className="sidebar-content">{props.children}</div>
+      <div className="sidebar-content">{children}</div>
     </div>
   );
 }
