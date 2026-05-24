@@ -5,7 +5,7 @@ import DashboardPage from './pages/dashboard/DashboardPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import SidebarLayout from './pages/SidebarLayout';
 import GoalPage from './pages/goal/GoalPage';
-import SimulatorPage from './pages/SimulatorPage';
+import SimulatorPage from './pages/simulator/SimulatorPage';
 
 
 function App() {

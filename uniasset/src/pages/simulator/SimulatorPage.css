@@ -1,0 +1,280 @@
+/* 페이지 전체 */
+.simulator-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 30px;
+}
+
+.simulator-page h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+.simulator-description {
+  color: #4b5563;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* 카드 스타일 */
+.sim-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.sim-card h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+.sim-card h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #374151;
+}
+
+/* 빠른 입력 영역 */
+.sim-quick-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sim-btn-dash {
+  background: #eef2ff;
+  color: #4338ca;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.sim-btn-dash:hover {
+  background: #e0e7ff;
+}
+
+/* 입력 필드 */
+.sim-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.sim-input-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.sim-input-group input,
+.sim-input-group select {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #f9fafb;
+  outline: none;
+}
+
+.sim-input-group input:focus,
+.sim-input-group select:focus {
+  border-color: #4f46e5;
+  background: white;
+}
+
+/* 가로 배치 */
+.sim-row {
+  display: flex;
+  gap: 12px;
+}
+
+.sim-row .sim-input-group {
+  flex: 1;
+}
+
+/* 버튼 그룹 */
+.sim-btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.sim-btn-calc {
+  flex: 1;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sim-btn-calc:hover {
+  background: #4338ca;
+}
+
+.sim-btn-reset {
+  background: white;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sim-btn-reset:hover {
+  background: #f9fafb;
+}
+
+/* 결과 박스 */
+.sim-result-box {
+  background: #f0f9ff;
+  border: 2px solid #bae6fd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.sim-result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.sim-result-item:last-child {
+  margin-bottom: 0;
+}
+
+.sim-result-label {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.sim-result-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.sim-result-value.big {
+  font-size: 28px;
+  color: #0369a1;
+}
+
+.sim-result-value.profit {
+  color: #15803d;
+}
+
+.sim-result-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.sim-result-row .sim-result-item {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* 테이블 */
+.sim-table-wrap {
+  margin-top: 20px;
+}
+
+.sim-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.sim-table th {
+  background: #f3f4f6;
+  padding: 10px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.sim-table td {
+  padding: 10px;
+  font-size: 14px;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sim-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* 목표 정보 */
+.sim-goal-info {
+  background: #fefce8;
+  border: 2px solid #fde047;
+}
+
+.sim-goal-detail p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+.sim-goal-detail strong {
+  color: #111827;
+  font-size: 16px;
+}
+
+.sim-goal-compare {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #fde047;
+}
+
+.sim-goal-success {
+  color: #15803d;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.sim-goal-fail {
+  color: #b91c1c;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .simulator-page {
+    padding: 16px;
+  }
+
+  .sim-row {
+    flex-direction: column;
+  }
+
+  .sim-result-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sim-result-value.big {
+    font-size: 24px;
+  }
+}

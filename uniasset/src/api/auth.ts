@@ -7,7 +7,7 @@ export const authApi = {
   },
 
   signup(data: SignupRequest) {
-    return apiClient.post<AuthResponse>('/auth/signup', data);
+    return apiClient.post<string>('/auth/signup', data);
   },
 
   logout() {
