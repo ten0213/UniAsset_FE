@@ -66,3 +66,26 @@ vite.config.ts (수정)         : 프록시 포트 8080 → 8081 변경
 ```
 
 ---
+
+## (05/24) 5번째 프로젝트 구현 한눈에 보기(자세한 내용은 README_5 참조)
+
+```
+types/goal.ts (신규)                              : Goal/GoalCreateRequest/GoalUpdateRequest 타입 정의
+api/goal.ts (신규)                                 : 목표 CRUD API 함수 (getGoals/createGoal/updateGoal/deleteGoal)
+pages/goal/GoalPage.tsx (신규)                     : 목표 관리 메인 페이지 + 대시보드 데이터 연동
+pages/goal/GoalSummary.tsx (신규)                  : 대시보드 기반 자산 현황 요약 카드
+pages/goal/GoalOverview.tsx (신규)                 : 전체 목표 종합 현황 + 전체 달성률 + 저축 초과 경고
+pages/goal/GoalCreateForm.tsx (신규)               : 목표 생성 폼 + 유효성 검증 + 월 잉여자금 빠른 입력
+pages/goal/GoalCard.tsx (신규)                     : 목표 카드 + 진행률/달성예상일 계산 + 저축액 수정/삭제
+pages/goal/GoalPage.css (신규)                     : 목표 페이지 카드형 반응형 스타일
+pages/simulator/SimulatorPage.tsx (신규)           : 시뮬레이터 메인 + 월 복리 계산 + 목표/대시보드 연동
+pages/simulator/SimQuickInput.tsx (신규)           : 빠른 입력 (목표 선택/대시보드 데이터)
+pages/simulator/SimulatorForm.tsx (신규)           : 투자 정보 입력 폼 (초기자산/월투자/수익률/기간)
+pages/simulator/SimResult.tsx (신규)               : 시뮬레이션 결과 (최종자산/투자금/수익금/연도별 테이블)
+pages/simulator/SimGoalInfo.tsx (신규)             : 선택 목표 정보 + 달성 가능 여부 비교
+pages/simulator/SimulatorPage.css (신규)           : 시뮬레이터 카드/테이블/결과 반응형 스타일
+.env.local (신규)                                  : VITE_API_BASE_URL, VITE_API_PROXY_TARGET 환경변수 분리
+vite.config.ts (수정)                              : 하드코딩 주소 → process.env.VITE_API_PROXY_TARGET 참조
+```
+
+---
