@@ -89,3 +89,20 @@ vite.config.ts (수정)                              : 하드코딩 주소 → p
 ```
 
 ---
+
+## (06/06) 6번째 프로젝트 구현 한눈에 보기(자세한 내용은 README_6 참조)
+
+```
+types/community.ts (신규)                          : Post(comments 포함)/Comment(status/reportCount)/CreateRequest 타입 정의
+api/community.ts (신규)                            : 게시글 통합 조회 + 작성 + 댓글 작성 + 좋아요 + 신고 API (/api/community)
+pages/community/CommunityPage.tsx (신규)           : 커뮤니티 메인 + 통합 조회 + 작성 폼 토글 + state로 상세 전달
+pages/community/PostCard.tsx (신규)                : 게시글 카드 (제목/미리보기/작성자/좋아요/댓글 수)
+pages/community/PostCreateForm.tsx (신규)          : 게시글 작성 폼 + 백엔드 검증과 동일한 유효성 (제목 2~80, 내용 4~1000)
+pages/community/PostDetailPage.tsx (신규)          : 게시글 상세 + 좋아요 + 댓글 영역 (state 우선, 없으면 목록 재조회)
+pages/community/CommentList.tsx (신규)             : 댓글 목록 + 상태별 분기(정상/신고됨/숨김/삭제) + 신고 버튼 + slice().reverse()로 새 댓글 아래 정렬
+pages/community/CommentForm.tsx (신규)             : 댓글 작성 (postId body 포함)
+pages/community/CommunityPage.css (신규)           : 커뮤니티 카드/상세/댓글/좋아요/신고 반응형 스타일
+App.tsx (수정)                                     : /community, /community/:postId 라우트 추가
+```
+
+---

@@ -6,6 +6,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import SidebarLayout from './pages/SidebarLayout';
 import GoalPage from './pages/goal/GoalPage';
 import SimulatorPage from './pages/simulator/SimulatorPage';
+import CommunityPage from './pages/community/CommunityPage';
+import PostDetailPage from './pages/community/PostDetailPage';
 
 
 function App() {
@@ -48,6 +50,27 @@ function App() {
           }
         />
 
+        <Route
+          path="/community"
+          element={
+            <ProtectedRoute>
+              <SidebarLayout>
+                <CommunityPage />
+              </SidebarLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/community/:postId"
+          element={
+            <ProtectedRoute>
+              <SidebarLayout>
+                <PostDetailPage />
+              </SidebarLayout>
+            </ProtectedRoute>
+          }
+        />
 
 
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
