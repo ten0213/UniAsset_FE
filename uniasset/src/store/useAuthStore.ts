@@ -50,7 +50,7 @@ const getSignupErrorMessage = (): string => {
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
-  token: localStorage.getItem('token'),
+  token: sessionStorage.getItem('token'),
   isLoading: false,
   error: null,
 
@@ -59,7 +59,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
     try {
       const { data } = await authApi.login({ email, password });
-      localStorage.setItem('token', data.token);
+      sessionStorage.setItem('token', data.token);
       set({ user: data.user, token: data.token, isLoading: false });
     } catch (err: unknown) {
       const axiosError = err as AxiosError<{ message?: string }>;
@@ -68,7 +68,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         : '로그인에 실패했습니다. 잠시 후 다시 시도해주세요.';
 
       // 로그인 실패 시 기존 세션 상태가 남아있지 않도록 정리
-      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
       set({ user: null, token: null, error: message, isLoading: false });
     }
   },
@@ -79,7 +79,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       await authApi.signup({ name, email, password });
 
       // 회원가입 완료 후에는 자동 로그인하지 않고 로그인 페이지로 이동
-      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
       set({ user: null, token: null, error: null, isLoading: false });
       return true;
     } catch (err: unknown) {
@@ -94,7 +94,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   logout: () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     set({ user: null, token: null });
   },
 

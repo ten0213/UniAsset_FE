@@ -122,3 +122,17 @@ App.tsx (수정)                                     : /admin 라우트 추가
 ```
 
 ---
+
+## (06/07) 8번째 프로젝트 구현 한눈에 보기(자세한 내용은 README_8 참조)
+
+```
+pages/Sidebar.tsx (수정)                           : 메뉴 3섹션 분리(일반/커뮤니티/관리자 전용) + 관리자 페이지 내 앵커 4종(통계/사용자/댓글/로그) + handleAdminSectionMove로 같은 페이지면 scrollIntoView / 아니면 /admin#hash navigate
+pages/Sidebar.css (수정)                           : 관리자 전용 섹션 강조(#fcd34d 노란 라벨) + sidebar-sub-button 들여쓰기 + 점 마커 스타일
+pages/admin/AdminPage.tsx (수정)                   : useLocation().hash 감지 useEffect + 각 섹션 <section id="admin-stats|users|comments|logs"> 감싸기 + setTimeout(80ms) scrollIntoView 자동 점프
+pages/admin/AdminPage.css (수정)                   : .admin-section { scroll-margin-top: 20px } 추가 (점프 시 상단 여백)
+store/useAuthStore.ts (수정)                       : localStorage → sessionStorage 변경 (탭/창별 독립 로그인 세션, 다른 계정 동시 로그인 가능)
+api/client.ts (수정)                               : localStorage → sessionStorage 변경 (요청 인터셉터 토큰 조회 + 401 응답 시 토큰 제거)
+components/auth/ProtectedRoute.tsx (수정)          : localStorage → sessionStorage 변경 (토큰 가드 비교 대상 일치화)
+```
+
+---

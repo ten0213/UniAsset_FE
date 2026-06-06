@@ -360,3 +360,7 @@
   }
 }
 
+/* 사이드바 점프 시 섹션 상단에 약간의 여백 (네비 가림 방지) */
+.admin-section {
+  scroll-margin-top: 20px;
+}

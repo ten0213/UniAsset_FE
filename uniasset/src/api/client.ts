@@ -18,7 +18,7 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -33,7 +33,7 @@ apiClient.interceptors.response.use(
       const isAuthEndpoint = requestUrl.startsWith('/auth/login') || requestUrl.startsWith('/auth/signup');
 
       if (!isAuthEndpoint) {
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
         window.location.href = '/login';
       }
     }
