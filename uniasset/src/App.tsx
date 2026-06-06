@@ -8,6 +8,7 @@ import GoalPage from './pages/goal/GoalPage';
 import SimulatorPage from './pages/simulator/SimulatorPage';
 import CommunityPage from './pages/community/CommunityPage';
 import PostDetailPage from './pages/community/PostDetailPage';
+import AdminPage from './pages/admin/AdminPage';
 
 
 function App() {
@@ -67,6 +68,17 @@ function App() {
             <ProtectedRoute>
               <SidebarLayout>
                 <PostDetailPage />
+              </SidebarLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <SidebarLayout>
+                <AdminPage />
               </SidebarLayout>
             </ProtectedRoute>
           }

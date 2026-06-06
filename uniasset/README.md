@@ -106,3 +106,19 @@ App.tsx (수정)                                     : /community, /community/:p
 ```
 
 ---
+
+## (06/06) 7번째 프로젝트 구현 한눈에 보기(자세한 내용은 README_7 참조)
+
+```
+types/admin.ts (신규)                              : AdminDashboardData/Metrics/AdminUser/AdminComment/ModerationLog 타입 정의
+api/admin.ts (신규)                                : 통합 대시보드 조회 + 사용자/댓글 모더레이션 6종 API (/api/admin)
+pages/admin/AdminPage.tsx (신규)                   : 관리자 메인 + 권한 가드 + 통합 대시보드 1회 조회 → 4섹션 렌더링
+pages/admin/AdminStats.tsx (신규)                  : 사용자/댓글 통계 7개 지표 카드 (활성/SoftBan/탈퇴/신고/숨김/삭제)
+pages/admin/AdminUserList.tsx (신규)               : 사용자 모더레이션 테이블 (SoftBan/해제/강제 탈퇴, 본인/관리자 보호)
+pages/admin/AdminCommentList.tsx (신규)            : 댓글 모더레이션 카드 (숨김/복원/삭제, 상태별 액션 분기)
+pages/admin/AdminModerationLog.tsx (신규)          : 최근 모더레이션 활동 로그 테이블 (액션/대상/처리자/사유)
+pages/admin/AdminPage.css (신규)                   : 통계 카드 + 테이블 + 상태 배지 + 댓글 카드 + 로그 반응형 스타일
+App.tsx (수정)                                     : /admin 라우트 추가
+```
+
+---
