@@ -15,6 +15,25 @@ interface AuthState {
   clearError: () => void;
 }
 
+// sessionStorage에 저장된 user를 안전하게 복원
+// (JSON 파싱 실패하거나 토큰이 없으면 null 처리하고 잔여 데이터 정리)
+const restoreUserFromStorage = (): User | null => {
+  const token = sessionStorage.getItem('token');
+  const rawUser = sessionStorage.getItem('user');
+
+  if (!token || !rawUser) {
+    sessionStorage.removeItem('user');
+    return null;
+  }
+
+  try {
+    return JSON.parse(rawUser) as User;
+  } catch {
+    sessionStorage.removeItem('user');
+    return null;
+  }
+};
+
 // 에러 메시지 한글 매핑
 const getKoreanErrorMessage = (error: AxiosError<{ message?: string }>): string => {
   const status = error.response?.status;
@@ -49,7 +68,9 @@ const getSignupErrorMessage = (): string => {
 };
 
 export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
+  // 새로고침 시 token과 user를 모두 sessionStorage에서 복원해 관리자 메뉴 등
+  // user.role에 의존하는 UI가 사라지지 않도록 한다.
+  user: restoreUserFromStorage(),
   token: sessionStorage.getItem('token'),
   isLoading: false,
   error: null,
@@ -60,6 +81,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       const { data } = await authApi.login({ email, password });
       sessionStorage.setItem('token', data.token);
+      sessionStorage.setItem('user', JSON.stringify(data.user));
       set({ user: data.user, token: data.token, isLoading: false });
     } catch (err: unknown) {
       const axiosError = err as AxiosError<{ message?: string }>;
@@ -69,6 +91,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
       // 로그인 실패 시 기존 세션 상태가 남아있지 않도록 정리
       sessionStorage.removeItem('token');
+      sessionStorage.removeItem('user');
       set({ user: null, token: null, error: message, isLoading: false });
     }
   },
@@ -80,6 +103,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
       // 회원가입 완료 후에는 자동 로그인하지 않고 로그인 페이지로 이동
       sessionStorage.removeItem('token');
+      sessionStorage.removeItem('user');
       set({ user: null, token: null, error: null, isLoading: false });
       return true;
     } catch (err: unknown) {
@@ -88,6 +112,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         ? getSignupErrorMessage()
         : '회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.';
 
+      sessionStorage.removeItem('user');
       set({ user: null, token: null, error: message, isLoading: false });
       return false;
     }
@@ -95,6 +120,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   logout: () => {
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
     set({ user: null, token: null });
   },
 

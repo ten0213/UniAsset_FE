@@ -34,6 +34,7 @@ apiClient.interceptors.response.use(
 
       if (!isAuthEndpoint) {
         sessionStorage.removeItem('token');
+        sessionStorage.removeItem('user');
         window.location.href = '/login';
       }
     }
