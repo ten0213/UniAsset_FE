@@ -194,7 +194,7 @@ export default function PostDetailPage() {
             onClick={handleLike}
             disabled={isLiking}
           >
-            {isLiking ? '처리 중...' : '좋아요 ' + post.likeCount}
+            좋아요 {post.likeCount}
           </button>
         </div>
       </div>

@@ -76,9 +76,6 @@ export default function CommentList(props: any) {
             <div className="comment-header">
               <span className="comment-author">{c.authorName}</span>
               <span className="comment-date">{formatDate(c.createdAt)}</span>
-              {c.status === 'REPORTED' && (
-                <span className="comment-status-reported">신고됨</span>
-              )}
             </div>
             <div className="comment-content">{c.content}</div>
             {!isMine && (
